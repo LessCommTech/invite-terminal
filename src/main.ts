@@ -213,7 +213,7 @@ class TerminalState {
           const selectLabel = document.createElement('span');
           selectLabel.className = 'select-label';
           selectContainer.appendChild(selectLabel);
-          await this.typeText(selectLabel, `${item.content}:`);
+          await this.typeText(selectLabel, `${item.content}`);
           
           const selectElement = document.createElement('div');
           selectElement.className = 'terminal-select';
