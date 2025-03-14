@@ -12,28 +12,26 @@
         "content": "Welcome to Sharkfood public terminal."
       },
       {
-        "type": "text",
-        "content": "Please select an option below to continue:"
-      },
-      {
-        "type": "link",
-        "content": "About",
-        "url": "#about"
-      },
-      {
-        "type": "link",
-        "content": "Projects",
-        "url": "#projects"
-      },
-      {
-        "type": "link",
-        "content": "Contact",
-        "url": "#contact"
-      },
-      {
-        "type": "link",
-        "content": "Privacy Policy",
-        "url": "#privacy"
+        "type": "selection",
+        "content": "Please select an option below to continue:",
+        "options": [
+          {
+            "content": "About",
+            "url": "#about"
+          },
+          {
+            "content": "Projects",
+            "url": "#projects"
+          },
+          {
+            "content": "Contact",
+            "url": "#contact"
+          },
+          {
+            "content": "Privacy Policy",
+            "url": "#privacy"
+          }
+        ]
       }
     ]
   },
@@ -174,6 +172,12 @@
         "type": "text",
         "content": "*** DECRYPTION FAILED - UNAUTHORIZED ACCESS PROHIBITED ***",
         "class": ["terminal-text-reverse", "reducted","center"]
+      },
+      {
+        "type": "link",
+        "content": "Projects",
+        "navigation-dir": "back",
+        "url": "#projects"
       }
     ]
   },
@@ -189,7 +193,13 @@
       "Built for the largest HMO in Israel, Clalit health services.",
       "The app tracked the development of children ages 0-2, using the steps described by Clalit.",
       "This project is a joint effort with Yaniv Fridman, and is our unique invention sold to Clalit.",
-      "iOS/Android, Objective C/Java"
+      "iOS/Android, Objective C/Java",
+      {
+        "type": "link",
+        "content": "Projects",
+        "navigation-dir": "back",
+        "url": "#projects"
+      }
     ]
   },
   "projects": {

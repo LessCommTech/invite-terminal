@@ -12,11 +12,19 @@ interface ContentItem {
   type: 'text' | 'image' | 'link' | 'selection' | 'input' | 'button';
   content: string;
   url?: string;
-  options?: string[];
+  options?: OptionItem[];
   action?: string;
   id?: string;
   class?: string | string[];
+  // Only applies to link type
   'navigation-dir'?: 'back' | 'forward';
+  // Only applies to selection type, leave empty for numeric bullets
+  bullet?:string;
+}
+
+interface OptionItem {
+  content : string;
+  url: string; 
 }
 
 // State management
@@ -46,13 +54,19 @@ class TerminalState {
   }
 
   // Navigate to a specific page
-  public navigateTo(pageId: string): void {
-    if (this.contentData[pageId]) {
-      this.clearTerminal();
-      this.currentPage = this.contentData[pageId];
-      this.renderPage(this.currentPage,pageId);
+  public navigateTo(pageId?: string): void {
+    if (!pageId) return;
+    if (this.isExternalLink(pageId)){
+      window.open(pageId, '_blank');
     } else {
-      this.print(`Error: Page '${pageId}' not found.`);
+      pageId = pageId.substring(1); // remove prefix #
+      if (this.contentData[pageId]) {
+        this.clearTerminal();
+        this.currentPage = this.contentData[pageId];
+        this.renderPage(this.currentPage,pageId);
+      } else {
+        this.print(`Error: Page '${pageId}' not found.`);
+      }  
     }
   }
 
@@ -114,6 +128,10 @@ class TerminalState {
     this.printing = false;
   }
 
+  private isExternalLink(url:string): boolean {
+    return !(url && url.startsWith('#'));
+  }
+
   // Render individual content item
   private renderContentItem(rawItem: ContentItem | string): void {
     let item : ContentItem
@@ -164,21 +182,20 @@ class TerminalState {
           
           let prefix:string;
           // If it's an internal link
-          if (item.url && item.url.startsWith('#')) {
-            const targetPage = item.url.substring(1);
+          if (item.url && !this.isExternalLink(item.url)){
             if (item["navigation-dir"] == 'back'){
               prefix = '◃ '
             } else {
               prefix = '▹ ';
             }
-            linkElement.addEventListener('click', (e) => {
-              e.preventDefault();
-              this.navigateTo(targetPage);
-            });
           } else {
             linkElement.target = '_blank';
             prefix = '▹▹ ';
           }
+          linkElement.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.navigateTo(item.url);
+          });
           
           linkContainer.appendChild(linkElement);
           await this.typeText(linkElement, prefix + item.content);
@@ -206,10 +223,15 @@ class TerminalState {
             item.options.forEach((option, index) => {
               const optionElement = document.createElement('div');
               optionElement.className = 'select-option';
-              optionElement.textContent = `${index + 1}. ${option}`;
+              if (item.bullet){
+                optionElement.textContent = `${item.bullet} ${option.content}`;
+              } else {
+                optionElement.textContent = `${index + 1}. ${option.content}`;
+              }
+          
               optionElement.addEventListener('click', () => {
                 // Handle selection
-                console.log('Selected:', option);
+                this.navigateTo(option.url);
               });
               selectElement.appendChild(optionElement);
             });
@@ -398,6 +420,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Load content and navigate to the home page
   terminal.loadContent('content.json').then(() => {
-    terminal.navigateTo('home');
+    terminal.navigateTo('#home');
   });
 });
