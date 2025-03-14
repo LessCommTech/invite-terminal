@@ -1,0 +1,340 @@
+/* Terminal Website - CSS Styles */
+/* style.css */
+
+@font-face {
+  font-family: 'VGA';
+  src: url('fonts/vga.woff2') format('woff2'),
+       url('fonts/vga.woff') format('woff'),
+       url('fonts/vga.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --terminal-bg: #000000;
+  --terminal-text: #FF8000;  /* Orange monochrome */
+  --terminal-glow: rgba(255, 128, 0, 0.1);
+  --terminal-shadow: rgba(255, 128, 0, 0.1);
+  --terminal-cursor: #FF8000;
+  --terminal-scan-line: rgba(0, 0, 0, 0.8);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #000;
+  background-image: radial-gradient(rgba(255,128,0, 0.35), #000);
+  color: var(--terminal-text);
+  font-family: 'VGA', monospace;
+  font-size: 36px;
+  line-height: 1.2;
+  overflow-x: hidden;
+  text-shadow: 0 0 2px var(--terminal-glow);
+  position: relative;
+  padding: 10px;
+  min-height: 100vh;
+  mask-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0px,
+    rgba(0, 0, 0, 1) 1px,
+    rgba(0, 0, 0, 0) 2px
+  );
+}
+
+#scan-effect {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.05);
+  left: 0px;
+  top: 0%;
+  animation: scan-effect-animation 16s linear infinite;
+}
+
+@keyframes scan-effect-animation {
+	0% {
+		transform: translateY(100vh);
+    opacity: 1;
+	}
+  50% {
+    transform: translateY(0vh);
+    opacity: 1;
+  }
+  51% {
+    opacity: 0;
+  }
+	100% {
+    opacity: 0;
+	}
+}
+
+/* Main terminal container */
+#terminal {
+  position: relative;
+  width: 100%;
+  /* max-width: 800px; */
+  margin: 0px;
+  padding: 20px;
+  overflow: hidden;
+  background-color: var(--terminal-bg);
+  min-height: calc(100vh - 80px);
+}
+
+/* CRT overlay effect */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  background-size: 100% 2px;
+  animation: scanline 50ms linear infinite;
+}
+
+/* CRT scanline animation */
+@keyframes scanline {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+/* CRT distortion effect */
+.crt-distort {
+  animation: distort 100ms ease-in-out;
+}
+
+@keyframes distort {
+  0% {
+    transform: scale(1, 1) skewY(2deg);
+  }
+  25% {
+    transform: scale(1.005, 0.995) skewY(1.5deg);
+  }
+  50% {
+    transform: scale(0.995, 1.005) skewY(1deg);
+  }
+  75% {
+    transform: scale(1.005, 0.995) skewY(0.5deg);
+  }
+  100% {
+    transform: scale(1, 1) skewY(0deg);
+  }
+}
+
+/* Terminal elements */
+.terminal-title {
+  text-align: center;
+}
+
+.terminal-text {
+  margin-bottom: 0.2em;
+  letter-spacing: 0.05em;
+}
+
+.hexdump {
+  border: var(--terminal-text) 1px solid;
+  white-space: pre-line;
+  padding: 0.5em;
+  width: auto;
+  min-width: none;
+  display: inline-block;
+}
+
+.terminal-text-reverse, .terminal-title {
+  color: var(--terminal-bg);
+  background-color: var(--terminal-text);
+}
+
+.reducted {
+  animation: reducted-animation 3s step-end infinite;
+}
+
+.border {
+  border: var(--terminal-text) 1px solid;
+  padding: 0.5em;
+  margin: 0.5em;
+  display: inline-block;
+}
+
+
+.executing {
+  animation: executing-animation 5s ease-in-out forwards;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+@keyframes executing-animation {
+  0% {
+    opacity: 1;
+    display: block;
+  }
+  50% {
+    opacity: 0.50;
+    display: block;
+  }
+  99% {
+    opacity: 1;
+    display: block;
+  }
+  100% {
+    display: none
+  }
+}
+
+
+@keyframes reducted-animation {
+  0%, 100% {
+    color: var(--terminal-bg);
+    background-color: var(--terminal-text);
+  }
+  50% {
+    color: var(--terminal-text);
+    background-color: var(--terminal-bg);
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+/* Link styling */
+.terminal-link {
+  text-transform: uppercase;
+  color: var(--terminal-text);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.terminal-link:hover {
+  background-color: var(--terminal-text);
+  color: var(--terminal-bg);
+}
+
+/* Image styling */
+.image-container {
+  margin: 0.2em 0;
+  display: flex;
+  justify-content: left;
+}
+
+
+.terminal-image {
+  filter: sepia(40%);
+  position: relative;
+  max-width: 100%;
+  border: 1px solid var(--terminal-text);
+}
+
+/* Selection styling */
+.select-container {
+  margin: 1em 0;
+}
+
+.select-label {
+  margin-right: 0.5em;
+}
+
+.terminal-select {
+  margin-top: 0.5em;
+  border: 1px solid var(--terminal-text);
+  padding: 0.5em;
+}
+
+.select-option {
+  padding: 0.25em 0.5em;
+  cursor: pointer;
+}
+
+.select-option:hover {
+  background-color: var(--terminal-text);
+  color: var(--terminal-bg);
+}
+
+/* Input styling */
+.input-container {
+  margin: 1em 0;
+  display: flex;
+  align-items: center;
+}
+
+.input-label {
+  margin-right: 0.5em;
+}
+
+.terminal-input {
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  border: 1px solid var(--terminal-text);
+  padding: 0.25em 0.5em;
+  outline: none;
+  flex-grow: 1;
+}
+
+.terminal-input:focus {
+  box-shadow: 0 0 5px var(--terminal-glow);
+}
+
+/* Button styling */
+.button-container {
+  margin: 1em 0;
+}
+
+.terminal-button {
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  border: 1px solid var(--terminal-text);
+  padding: 0.25em 1em;
+  cursor: pointer;
+}
+
+.terminal-button:hover {
+  background-color: var(--terminal-text);
+  color: var(--terminal-bg);
+}
+
+/* Loading and error messages */
+.loading-text, .error-text {
+  padding: 1em;
+  text-align: center;
+  border: 1px solid var(--terminal-text);
+}
+
+.error-text {
+  color: #FF0000;
+}
+
+/* Cursor animation */
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Cursor styling */
+.cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  background-color: var(--terminal-cursor);
+  margin-left: 0.2em;
+  animation: blink 1s step-end infinite;
+  vertical-align: bottom;
+}

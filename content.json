@@ -1,0 +1,298 @@
+{
+  "home": {
+    "type": "page",
+    "title": "SHARKFOOD.COM",
+    "content": [
+      {
+        "type": "image",
+        "content": "img/sense_logo.png"
+      },
+      {
+        "type": "text",
+        "content": "Welcome to Sharkfood public terminal."
+      },
+      {
+        "type": "text",
+        "content": "Please select an option below to continue:"
+      },
+      {
+        "type": "link",
+        "content": "About",
+        "url": "#about"
+      },
+      {
+        "type": "link",
+        "content": "Projects",
+        "url": "#projects"
+      },
+      {
+        "type": "link",
+        "content": "Contact",
+        "url": "#contact"
+      },
+      {
+        "type": "link",
+        "content": "Privacy Policy",
+        "url": "#privacy"
+      }
+    ]
+  },
+  "privacy" : {
+    "type" : "page",
+    "title" : "Privacy Policy",
+    "content" : [
+      "- This website will not track you",
+      "- This website does not retain any personal information about users",
+      "- No cookies were used during the creation of this site; this website is crumb free",
+      "- There are no third party trackers, analytics, or other online services used with this website",
+      "- The website is hosted using Amazon’s AWS technologies, which as far as I know, does not track you",
+      "- The information in contact forms will be transmitted as is, and will be used for your contact reason only",
+      {
+        "type": "text",
+        "content": "- This privacy policy was written by a human who cares about privacy",
+        "class": "reducted"
+      }
+    ]
+  },
+  "about": {
+    "type": "page",
+    "title": "About Sharkfood",
+    "content": [
+      {
+        "type": "image",
+        "content": "img/sense_logo.png"
+      },
+      "I started Sharkfood as a software development shop back in 2010.",
+      "Over the years, I've developed many interesting projects, some are publicly known, others are top secret :)",
+      "I've built retail apps, instant messaging using the Signal end-to-end encryption protocol, and more.",
+      "Whether it's iOS, Android, Web Frontend/Backend, or custom C++ projects, I deliver on time and on budget.",
+      "I'm based in Berlin.",
+      "Check out my Linkedin, Github and Stackoverflow for more info.",
+      {
+        "type": "text",
+        "content": "Over the years, I've developed many interesting projects, some are publicly known, others are top secret :)"
+      },
+      {
+        "type": "link",
+        "content": "Contact",
+        "url": "#contact"
+      }
+    ]
+  },
+  "fooducate" : {
+    "type" : "page",
+    "title" : "Fooducate",
+    "content" : [
+      {
+        "type": "image",
+        "content": "img/apps/fooducate.jpg"
+      },
+      "Fooducate - Eat a little better.",
+      "I've been working on Fooducate from 2010-2022, until it was sold to Maple Media.",
+      "Over the years Fooducate had won awards, and was a constant member of the top 10 apps in the Food & Health category, and was even presented in Apple ads for the iPhone.",
+      "Fooducate is available only in the US AppStore.",
+      "iOS, C++, Swift, Objective C",
+      {
+        "type": "link",
+        "content": "Fooducate in the AppStore",
+        "url": "https://apps.apple.com/us/app/fooducate-nutrition-coach/id398436747?itsct=apps_box_link&itscg=30200"
+      },
+      {
+        "type": "link",
+        "content": "Projects",
+        "navigation-dir": "back",
+        "url": "#projects"
+      }
+    ]
+  },
+  "instant-talk" : {
+    "type" : "page",
+    "title" : "Instant Talk",
+    "content" : [
+      {
+        "type": "image",
+        "content": "img/apps/instanttalk.jpg"
+      },
+      "Instant Talk",
+      "Push To Talk client for the IPRS system.",
+      "Built for Mobile Tornado, I started this project and imported code from legacy systems such as BREW and Symbian to iOS.",
+      "Implemented a realtime Push To Talk system with a sub second call setup, and an instant messenger.",
+      "iOS, C/C++, Objective C",
+      {
+        "type": "link",
+        "content": "Instant Talk in the AppStore",
+        "url": "https://apps.apple.com/us/app/instanttalk-ptt/id721180594?itsct=apps_box_link&itscg=30200"
+      },
+      {
+        "type": "link",
+        "content": "Projects",
+        "navigation-dir": "back",
+        "url": "#projects"
+      }
+    ]
+  },
+  "iprs-firewall" : {
+    "type" : "page",
+    "title" : "IPRS Firewall",
+    "content" : [
+      {
+        "type": "image",
+        "content": "img/apps/firewall.png"
+      },
+      "IPRS Gateway is a data packet filtering process for Linux, built for Mobile Tornado.",
+      "Built as an IP router, the gateway uses Linux packet filtering for protecting agains attacks on the MT IPRS server.",
+      "It inspects packets, makes sure the packets are valid, and also maintains statistics to protect agains DoS attacks.",
+      "It also applies in-place heuristics to help reject messages, altering the packets so they would be re-routed to the sender as a 'denied' response.",
+      "Linux, C++, Net filtering, IP Gateway, UDP",
+      "iOS, C/C++, Objective C",
+      {
+        "type": "link",
+        "content": "Projects",
+        "navigation-dir": "back",
+        "url": "#projects"
+      }
+    ]
+  },
+  "secret" : {
+    "type" : "page",
+    "title" : "Top Secret",
+    "content" : [
+      {
+        "type": "image",
+        "content": "img/apps/secret.png"
+      },
+      "A new instant messenger with a unique set of features.",
+      "Designed and built this new project from scratch.",
+      "Implemented the Signal end to end encryption protocol.",
+      "iOS/Android/Web/Backend C/C++,Swift,Flutter,Typescript/NodeJS,PostgreSQL,AWS",
+      {
+        "type" : "text",
+        "content" : "0000000 6153 6f79\n 0000004 616e 6172\n0000008 5720 6c69\n000000c 2064 6548\n0000010 7261 7374",
+        "class" : "hexdump"
+      },
+      {
+        "type": "text",
+        "content": "*** DECRYPTION FAILED - UNAUTHORIZED ACCESS PROHIBITED ***",
+        "class": ["terminal-text-reverse", "reducted","center"]
+      }
+    ]
+  },
+  "clalit" : {
+    "type" : "page",
+    "title" : "Clalit Child Development",
+    "content" : [
+      {
+        "type": "image",
+        "content": "img/apps/clalit.jpg"
+      },
+      "Clalit Child Development ages 0-2",
+      "Built for the largest HMO in Israel, Clalit health services.",
+      "The app tracked the development of children ages 0-2, using the steps described by Clalit.",
+      "This project is a joint effort with Yaniv Fridman, and is our unique invention sold to Clalit.",
+      "iOS/Android, Objective C/Java"
+    ]
+  },
+  "projects": {
+    "type": "page",
+    "title": "Projects",
+    "content": [
+      {
+        "type" : "text",
+        "content" : "SELECT * FROM projects WHERE status = 'public';",
+        "class" : "border"
+      },
+      {
+        "type" : "text",
+        "content" : "RUNNING QUERY...",
+        "class" : "executing"
+      },
+      {
+        "type": "image",
+        "content": "img/apps/fooducate-thumb.jpg"
+      },
+      {
+        "type": "link",
+        "content": "Fooducate",
+        "url": "#fooducate"
+      },
+      {
+        "type": "image",
+        "content": "img/apps/instanttalk-thumb.jpg"
+      },
+      {
+        "type": "link",
+        "content": "Instant Talk",
+        "url": "#instant-talk"
+      },
+      {
+        "type": "image",
+        "content": "img/apps/firewall-thumb.png"
+      },
+      {
+        "type": "link",
+        "content": "IPRS firewall",
+        "url": "#iprs-firewall"
+      },
+      {
+        "type": "image",
+        "content": "img/apps/clalit-thumb.jpg"
+      },
+      {
+        "type": "link",
+        "content": "Clalit Child Development",
+        "url": "#clalit"
+      },
+      {
+        "type": "image",
+        "content": "img/apps/secret-thumb.png"
+      },
+      {
+        "type": "link",
+        "content": "Top Secret",
+        "url": "#secret"
+      }
+    ]
+  },
+  "contact": {
+    "type": "page",
+    "title": "Contact",
+    "content": [
+      {
+        "type": "image",
+        "content": "img/social/mail.png"
+      },
+      {
+        "type": "link",
+        "content":"email",
+        "url": "mailto:contact@sharkfood.com?subject=Contact%20Form"
+      },
+      {
+        "type": "image",
+        "content": "img/social/linkedin.png"
+      },
+      {
+        "type": "link",
+        "url": "https://www.linkedin.com/in/moshegottlieb/",
+        "content": "linkedin"
+      },
+      {
+        "type": "image",
+        "content": "img/social/github.png"
+      },
+      {
+        "type": "link",
+        "url": "https://github.com/moshegottlieb",
+        "content": "Github"
+      },
+      {
+        "type": "image",
+        "content": "img/social/stackoverflow.png"
+      },
+      {
+        "type": "link",
+        "url": "https://stackoverflow.com/users/1610530/moshe-gottlieb",
+        "content": "Stackoverflow"
+      }
+    ]
+  }
+}
