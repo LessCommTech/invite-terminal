@@ -283,6 +283,7 @@ body {
   padding: 0.25em 0.5em;
   outline: none;
   flex-grow: 1;
+  font-size: 18px;
 }
 
 .terminal-input:focus {
@@ -300,6 +301,7 @@ body {
   border: 1px solid var(--terminal-text);
   padding: 0.25em 1em;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .terminal-button:hover {

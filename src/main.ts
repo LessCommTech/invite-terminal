@@ -121,7 +121,12 @@ class TerminalState {
     while (this.printQueue.length > 0) {
       const printFn = this.printQueue.shift();
       if (printFn) {
-        await printFn();
+        try {
+          await printFn();
+        } catch (error){
+          console.error('Error printing:', error);
+        }
+        
       }
     }
     
@@ -144,13 +149,13 @@ class TerminalState {
       item = rawItem
     }
     let element: HTMLElement;
+    let id_element : any = null;
     switch (item.type) {
       case 'text':
         const paragraph = document.createElement('p');
         element = paragraph;
         paragraph.className = 'terminal-text';
         this.terminal.appendChild(paragraph);
-        
         this.queuePrint(async () => {
           await this.typeText(paragraph, item.content);
           return Promise.resolve();
@@ -174,9 +179,10 @@ class TerminalState {
         element = linkContainer;
         linkContainer.className = 'link-container';
         this.terminal.appendChild(linkContainer);
-        
+        const linkElement = document.createElement('a');
+        id_element = linkElement;
+      
         this.queuePrint(async () => {
-          const linkElement = document.createElement('a');
           linkElement.href = item.url || '#';
           linkElement.className = 'terminal-link';
           
@@ -246,17 +252,16 @@ class TerminalState {
         element = inputContainer;
         inputContainer.className = 'input-container';
         this.terminal.appendChild(inputContainer);
-        
+        const inputElement = document.createElement('input');
+        id_element = inputElement;      
         this.queuePrint(async () => {
           const inputLabel = document.createElement('span');
           inputLabel.className = 'input-label';
           inputContainer.appendChild(inputLabel);
           await this.typeText(inputLabel, `${item.content}:`);
           
-          const inputElement = document.createElement('input');
           inputElement.type = 'text';
           inputElement.className = 'terminal-input';
-          inputElement.id = item.id || 'input-' + Math.random().toString(36).substring(2);
           inputContainer.appendChild(inputElement);
           
           return Promise.resolve();
@@ -269,14 +274,17 @@ class TerminalState {
         buttonContainer.className = 'button-container';
         this.terminal.appendChild(buttonContainer);
         
-        this.queuePrint(async () => {
-          const buttonElement = document.createElement('button');
+        const buttonElement = document.createElement('button');
+        element = buttonElement;
+      this.queuePrint(async () => {
           buttonElement.className = 'terminal-button';
-          buttonElement.addEventListener('click', () => {
-            // Handle button action
-            console.log('Button clicked:', item.action);
-          });
-          
+          const action = item.action;
+          if (action != null){
+            buttonElement.addEventListener('click', () => {
+              eval(action);
+            });
+          }
+            
           buttonContainer.appendChild(buttonElement);
           await this.typeText(buttonElement, item.content);
           return Promise.resolve();
@@ -291,6 +299,12 @@ class TerminalState {
       } else {
         element.classList.add(item.class);
       }
+    }
+    const id = item.id || 'input-' + Math.random().toString(36).substring(2);
+    if (id_element instanceof HTMLElement){
+      id_element.id = id;
+    } else {
+      element.id = id;
     }
   }
 
