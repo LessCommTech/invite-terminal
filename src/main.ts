@@ -65,7 +65,7 @@ class TerminalState {
         this.currentPage = this.contentData[pageId];
         this.renderPage(this.currentPage,pageId);
       } else {
-        this.print(`Error: Page '${pageId}' not found.`);
+        this.printError(`Error: page '${pageId}' not found.`);
       }  
     }
   }
@@ -391,6 +391,19 @@ class TerminalState {
   public print(message: string): void {
     const paragraph = document.createElement('p');
     paragraph.className = 'terminal-text';
+    this.terminal.appendChild(paragraph);
+    
+    this.queuePrint(async () => {
+      await this.typeText(paragraph, message);
+      return Promise.resolve();
+    });
+    
+    this.processQueue();
+  }
+
+  public printError(message: string): void {
+    const paragraph = document.createElement('p');
+    paragraph.className = 'terminal-text error-text';
     this.terminal.appendChild(paragraph);
     
     this.queuePrint(async () => {

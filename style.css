@@ -12,10 +12,10 @@
 
 :root {
   --terminal-bg: #000000;
-  --terminal-text: #FF8000;  /* Orange monochrome */
+  --terminal-text: #8FA1A6;  /* Orange monochrome */
   --terminal-glow: rgba(255, 128, 0, 0.1);
   --terminal-shadow: rgba(255, 128, 0, 0.1);
-  --terminal-cursor: #FF8000;
+  --terminal-cursor: #8FA1A6;
   --terminal-scan-line: rgba(0, 0, 0, 0.8);
 }
 
